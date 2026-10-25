@@ -502,4 +502,4 @@ Ruled by Egildo: CI through GitHub mirrors under his own account, no organisatio
 - **How they stay in step:** each checkout's `origin` has two push addresses, Codeberg then GitHub, so every `git push` from this Mac reaches both. No token went into Codeberg. The limit: a push from anywhere else reaches Codeberg only.
 - **The CI:** `house/shared/github/check.yml`, copied to `.github/workflows/check.yml`. It runs `pnpm install --frozen-lockfile` and `pnpm check` on the Node version in `.node-version`. skills and house run only the purity check, from their own variants.
 - **First runs:** green in all seven. figma ran 1524 tests and found no leaks.
-- **Open, Egildo's to decide:** a `PURITY_NAMES` secret for the mirrors. Until there is one, the CI's purity check says "no names file; nothing checked" and passes. The check still runs locally in `pnpm check`.
+- **`PURITY_NAMES`**, on Egildo's word, is a secret on each of the seven mirrors, set with `gh secret set` straight from `~/.config/toghen/purity-names`. Rerun with it, every mirror's purity check reads the names and passes. Change the list in that file, then set the secret again on all seven.
