@@ -1,0 +1,13 @@
+# The local workspace: links the checkouts that sit beside house, so a change
+# across packages is one step on this machine. Copied into the folder that holds
+# the checkouts; that folder is not a repository. Each repository on Codeberg
+# installs its neighbours from npm instead.
+packages:
+  - lib
+  - postcss
+  - query
+  - ui
+  - figma
+linkWorkspacePackages: true
+onlyBuiltDependencies:
+  - esbuild
