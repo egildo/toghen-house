@@ -492,3 +492,14 @@ npm, on Egildo's go: publish lib, postcss, ui, figma, query at 0.1.0, in that or
 - **Each repository checked alone**, in a fresh clone from Codeberg, installing its neighbours from npm. `pnpm check` passes in all five: lib 626, postcss 365, query 30, ui 45, figma 1524. The lockfile each install made is folded into its repository's one commit and force-pushed.
 - **Found by that check:** figma's style test imported `@toghen/ui/build.mjs`. That script works only inside a checkout of ui: it reads fonts from ui's own `node_modules`, and it imports ui's dev tools. The test now reads `@toghen/ui/styles.css`, the stylesheet ui ships, which is the same text the script builds. **Left for a later round:** ui still exports `./build.mjs`. It should either stop exporting it, or carry what it imports as dependencies.
 - **The deprecations:** the first try answered 404. The cause was not the code: the token npm had stored no longer authenticated, and npm reports a refused write as 404. Publishing had worked only because it signs in through the browser every time. After a fresh `npm login`, `npm deprecate` asked for the browser sign-in like the publish did. Done, all with "Toghen moved to Codeberg and restarted at 0.1.0" and the repository's URL: lib 4.1.1 and 6.0.0, postcss 0.18.0 and 0.21.0, query 0.2.0. Every 0.1.0 is clean, and `latest` is 0.1.0 for all five.
+
+## GitHub mirrors and CI, until Woodpecker (25 October 2026)
+
+Ruled by Egildo: CI through GitHub mirrors under his own account, no organisation, and "deal with the old toghen-lib name".
+
+- **The old private `egildo/toghen-lib`**, the library before the monorepo (last pushed June 2026), is now `egildo/toghen-lib-old`. It is still private and otherwise untouched. `egildo/Toghen` stays as it is.
+- **Seven public mirrors**, `egildo/toghen-<name>`. Each description says it is a mirror of `codeberg.org/Toghen/<name>`, where issues and changes go, and issues and the wiki are off. GitHub offers no switch for pull requests.
+- **How they stay in step:** each checkout's `origin` has two push addresses, Codeberg then GitHub, so every `git push` from this Mac reaches both. No token went into Codeberg. The limit: a push from anywhere else reaches Codeberg only.
+- **The CI:** `house/shared/github/check.yml`, copied to `.github/workflows/check.yml`. It runs `pnpm install --frozen-lockfile` and `pnpm check` on the Node version in `.node-version`. skills and house run only the purity check, from their own variants.
+- **First runs:** green in all seven. figma ran 1524 tests and found no leaks.
+- **Open, Egildo's to decide:** a `PURITY_NAMES` secret for the mirrors. Until there is one, the CI's purity check says "no names file; nothing checked" and passes. The check still runs locally in `pnpm check`.
