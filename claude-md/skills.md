@@ -19,5 +19,5 @@ The rules are in the constitution, at `.specify/memory/constitution.md`: the sha
 ```sh
 claude plugin validate .                 # the marketplace
 claude plugin validate plugins/toghen    # the plugin and its skills
-pnpm check                               # coming in the tooling round
+node scripts/check-purity.mjs            # the gate CI runs
 ```

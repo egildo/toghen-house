@@ -17,6 +17,8 @@ Toghen is a design-tokens toolkit. It reads one portable token source, written i
 | [`@toghen/figma`](https://codeberg.org/Toghen/figma) | Syncs tokens to Figma variables and styles, builds component sets from component files, and audits and exports them. The `toghen-figma` command runs a whole sync from a repository. |
 | [`@toghen/query`](https://codeberg.org/Toghen/query) | A command line that asks the core a question and prints the answer, one command for each of the core's nine questions, each answer one call to one export. |
 | [`toghen-ui`](https://codeberg.org/Toghen/ui) | The design system of the Figma plugin's screen, and Toghen's playground. |
+| [`toghen-skills`](https://codeberg.org/Toghen/skills) | A Claude Code plugin marketplace: skills for the pipeline from a repository to Figma and FigCraft, and for each app at a pinned version. No code. |
+| [`gosfuig`](https://codeberg.org/Toghen/gosfuig) | A perceptual (OKLCH) palette generator, with contrast checks and W3C design-token export. |
 
 ## A small example
 
@@ -64,29 +66,26 @@ Each package has a guide for tasks, a reference for the API, specs for how it wo
 | `@toghen/figma` | [guide](https://codeberg.org/Toghen/figma/src/branch/main/guide.md) | [reference](https://codeberg.org/Toghen/figma/src/branch/main/reference.md) | [specs](https://codeberg.org/Toghen/figma/src/branch/main/specs.md) | [decisions](https://codeberg.org/Toghen/figma/src/branch/main/decisions.md) | [component files](https://codeberg.org/Toghen/figma/src/branch/main/component-files.md), [screen](https://codeberg.org/Toghen/figma/src/branch/main/ui.md), [UX map](https://codeberg.org/Toghen/figma/src/branch/main/ux-map.md), [UX rulebook](https://codeberg.org/Toghen/figma/src/branch/main/ux-rulebook.md), [UX smell log](https://codeberg.org/Toghen/figma/src/branch/main/ux-smell-log.md) |
 | `@toghen/query` | [guide](https://codeberg.org/Toghen/query/src/branch/main/guide.md) | None: it exposes transcripts, not an API | [specs](https://codeberg.org/Toghen/query/src/branch/main/specs.md) | [decisions](https://codeberg.org/Toghen/query/src/branch/main/decisions.md) | [sessions](https://codeberg.org/Toghen/query/src/branch/main/sessions/) |
 | `toghen-ui` | [guide](https://codeberg.org/Toghen/ui/src/branch/main/guide.md) | None: it exposes documents, not an API | [specs](https://codeberg.org/Toghen/ui/src/branch/main/specs.md) | [decisions](https://codeberg.org/Toghen/ui/src/branch/main/decisions.md) | |
+| `toghen-skills` | [guide](https://codeberg.org/Toghen/skills/src/branch/main/guide.md) | None: it holds skills, not code | [specs](https://codeberg.org/Toghen/skills/src/branch/main/specs.md) | [decisions](https://codeberg.org/Toghen/skills/src/branch/main/decisions.md) | |
 
 Contributors and AI agents: [CLAUDE.md](./CLAUDE.md) says which of these bind you, and the invariants that keep Toghen general-purpose.
 
 ## Build and test
 
-Run these from the repository root. The last three run across every package.
+Each repository builds and tests on its own. In a clone of one of the five code packages:
 
 ```sh
 pnpm install
-pnpm build
-pnpm typecheck
-pnpm test
+pnpm check
 ```
 
-To build the Figma plugin into `toghen-figma/dist`:
+`pnpm check` is the gate CI runs: Biome, the type check, the tests, the build and the purity check. house and skills hold no package; their gate is the purity check alone (`node shared/check-purity.mjs` in house, `node scripts/check-purity.mjs` in skills).
 
-```sh
-pnpm --filter @toghen/figma build
-```
+To work across packages on one machine, put the checkouts in one folder and copy house's `workspace/` files into it. That folder is not a repository: `pnpm install` there links lib, postcss, query, ui and figma to each other, and `pnpm build`, `pnpm typecheck` and `pnpm test` there run across all five.
 
-[Sync a repository into a Figma file](https://codeberg.org/Toghen/figma/src/branch/main/guide.md#from-the-repository-to-figma) walks through importing the plugin and the first sync. To see the plugin's screen in a browser, run `pnpm --filter @toghen/figma preview` after the build. See [the preview page](https://codeberg.org/Toghen/figma/src/branch/main/ui.md#the-preview-page).
+In a clone of figma, `pnpm build` writes the plugin into `dist/`. [Sync a repository into a Figma file](https://codeberg.org/Toghen/figma/src/branch/main/guide.md#from-the-repository-to-figma) walks through importing the plugin and the first sync. To see the plugin's screen in a browser, run `pnpm preview` there after the build. See [the preview page](https://codeberg.org/Toghen/figma/src/branch/main/ui.md#the-preview-page).
 
-A shell may resolve `node` to an old version and fail without a clear message. Put Node 25 first on your `PATH`, the version the repository is developed on.
+A shell may resolve `node` to an old version and fail without a clear message. Put Node 24 first on your `PATH`, the version `.node-version` names.
 
 ## License
 

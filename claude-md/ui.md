@@ -22,5 +22,5 @@ There is no `reference.md`. The package exposes documents, not an API.
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm check   # coming in the tooling round
+pnpm check   # the gate CI runs: Biome, then the three above, then the purity check
 ```
