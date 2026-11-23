@@ -22,5 +22,5 @@ The rules are in the constitution, at `.specify/memory/constitution.md`: the sha
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm check   # coming in the tooling round
+pnpm check   # the gate CI runs: Biome, then the three above, then the purity check
 ```

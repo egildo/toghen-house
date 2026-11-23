@@ -22,5 +22,5 @@ There is no `reference.md`. The package exposes transcripts, not an API: its ses
 pnpm typecheck
 pnpm test
 pnpm build
-pnpm check   # coming in the tooling round
+pnpm check   # the gate CI runs: Biome, then the three above, then the purity check
 ```
