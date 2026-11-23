@@ -143,11 +143,11 @@
    - b. [Second alternative]: [what it gives, what it costs].
    - c. [Third alternative, if there is one]: [what it gives, what it costs].
 
-## Answers ([DATE])
+## Answers ([THE DAY THE OWNER ANSWERS: leave this placeholder as it is until then])
 
 <!--
   Empty until the owner has answered. Never fill this in yourself.
-  When the owner answers, write the date in the heading, then one line per question:
+  When the owner answers, put that day's date in the heading's placeholder, then one line per question:
   the question's number, the chosen alternative, and the owner's reason if given.
   Then update the requirements the answer changes.
 -->
