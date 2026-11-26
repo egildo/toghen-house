@@ -1,6 +1,6 @@
 # Plan: the five leftovers of the measurement of 26 November 2026
 
-**Status**: Planned. Two questions wait for Egildo.
+**Status**: Ruled. Egildo answered the two questions on 26 November 2026, "1a 2a"; see *Answers*.
 
 ## Where this comes from
 
@@ -33,6 +33,13 @@ The measurement's logs are under `/private/tmp/claude-501/-Users-egildo--claude-
    - a. **The count leaves out `RELAYOUT`.** An unchanged set prints `Chip: 0 steps · 0 created · 0 updated · 0 deleted`, as the artboard does. The run still re-lays the set out. Costs: every count drops by one, so the docs' examples and the tests that pin a count change. *Recommended*: the line counts what the run changes, and the set and the artboard read alike.
    - b. **The line drops the step count,** and keeps created, updated, deleted, breaking and drifted. Costs: a run of only patches to properties, which no member count shows, reads `0 created · 0 updated · 0 deleted`.
    - c. **The diff plans `RELAYOUT` only when another step changes the set.** Costs: a member a person dragged out of place is no longer put back by an unchanged run; a behaviour change, for a line.
+
+## Answers
+
+Egildo, 26 November 2026: "1a 2a".
+
+1. **a.** figma prints lib's line alone when it already names the entry's location, as query does; every other load error keeps the prefix.
+2. **a.** A set's count leaves out `RELAYOUT`; the run still re-lays the set out.
 
 ## Rules that bind every unit
 
