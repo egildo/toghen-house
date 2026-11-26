@@ -1,6 +1,6 @@
 # Plan: the fixes from the measurement of 25 November 2026
 
-**Status**: Draft. Five questions are open. A unit or item that waits on one starts once Egildo answers it.
+**Status**: Ruled. Egildo answered the five questions on 26 November 2026; see *Answers*. Units H does not run.
 
 ## Where this comes from
 
@@ -62,6 +62,18 @@ Found while proving them:
    - a. **lib: `check()` gains `unresolvable`:** each token that throws when resolved in a mode, with the mode, the reference and the error's reason. A cycle goes there too, since §7 lists both. query prints the section and exits 1 on it. Costs: `check` resolves every token in every mode, which a large product build makes slow, to be measured; `Check` gains a field. *Recommended*: `check` becomes what it says, and lib's *Future* line is done.
    - b. **lib: `Resolver` refuses such a document when it builds.** Costs: against "resolve only when needed"; one bad token stops every tool, a figma sync of the rest included.
    - c. **No code: query's guide says `check` does not follow references,** and `value` does. Costs: `check` keeps passing a document the standard says must be reported.
+
+## Answers (26 November 2026)
+
+Egildo, 26 November 2026: "1b 2a 3a 4a 5a".
+
+1. **b.** The lock's entry for a FigCraft library keeps the id and no path. An older entry that holds a path is still read, and the path ignored. figma's decisions entry supersedes the 23 October ruling's "holds the path and the id".
+2. **a.** The command line prints a path as typed, wherever a person typed it: Published, Enabled, the dry-run lines and `Saved` included. A path nobody typed stays as it is. The readers in figma and query give Node's reason without its path.
+3. **a.** The dry run asks `restack()` at today's sizes and names only the sets it would move; with nothing to move, it says nothing of the page.
+4. **a.** lib gains a `DesignSystem` method that answers a token's custom property by its path, with the one-collection shorthand, and throws for a path that names no token. query's `css <path>` calls it. Unit H does not run.
+5. **a.** lib's `check()` gains `unresolvable`, cycles included; query prints it and exits 1 on it. Measure its time as unit L says, and report it before the integration.
+
+**Publishing,** since 25 November 2026: every package publishes by trusted publishing on a pushed tag, with nothing asked of Egildo. Merging still waits on his word.
 
 ## The repositories, the branches and the worktrees
 
@@ -155,4 +167,4 @@ Every answer above changes something the skills say, and so do findings 5 and 9.
 2. **Merge** figma's two branches into `measurement-fixes`.
 3. **Check across the packages.** Put each branch in the main checkouts, run `pnpm check` in each, rebuild the plugin, and confirm no `[object Object]` and no unresolved `toghen(`.
 4. **Record** what each unit's build found in each repository's `decisions.md`, dated, one entry per repository. figma's entry supersedes the 23 October lock ruling where question 1 changes it, and closes the 23 November *Noticed* line on the restack.
-5. **Report** to Egildo. Merging means pushing to Codeberg, on his word. Claude bumps the versions after the merge; a publish needs Egildo. lib goes first, then query's items 3 and 4, then figma and query together, then unit S.
+5. **Report** to Egildo. Merging means pushing to Codeberg, on his word. Claude bumps the versions after the merge and pushes the tags; publishing follows by itself. lib goes first, then query's items 3 and 4, then figma and query together, then unit S.
