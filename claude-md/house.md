@@ -34,3 +34,13 @@ House has no build and no tests. Its gate is the purity check, which CI runs too
 ```sh
 node shared/check-purity.mjs
 ```
+
+## Call it a day
+
+At the end of a session, in this order. A step with nothing to do is skipped.
+
+1. **Work in flight.** Every checkout in the folder that holds them: what is uncommitted, and what is unpushed, by repository and branch. It is committed, stashed or left on the maintainer's word, and never discarded.
+2. **Cleanup.** The worktrees in the folder beside the checkouts, and the branches already merged into `main`, in the checkouts and in the frozen monorepo Toghen was split from. Delete them only on the maintainer's yes. The `local-history` branches stay: they are never pushed and never deleted.
+3. **Memory.** The auto-memory index and its files. Prune what is stale or only mattered to the session, and merge duplicates. Show the diff before writing.
+4. **The handoff.** The memory note `handoff`, replaced each time: where things are, what is settled, what is open, and the first move.
+5. **The report**, in five lines.
